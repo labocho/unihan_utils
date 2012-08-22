@@ -25,7 +25,7 @@ module UnihanUtils
           codepoint, relation, variants = row
           break unless codepoint
 
-          character = Character.create_or_find_by_codepoint_uplus(codepoint)
+          character = Character.create_or_find_by_codepoint(codepoint)
 
           variants.split(" ").each do |variant_and_sources|
             # variant_and_sources: "U+60B6<kMatthews,kMeyerWempe"
@@ -39,7 +39,7 @@ module UnihanUtils
             end
 
             # Create variant
-            variant = Character.create_or_find_by_codepoint_uplus(variant_codepoint)
+            variant = Character.create_or_find_by_codepoint(variant_codepoint)
             cv = character.characters_variants.build(variant: variant, relation: relation)
             cv.save!
             STDERR.puts "CharactersVariants created: #{cv.inspect}"

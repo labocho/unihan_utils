@@ -1,11 +1,11 @@
 require "unihan_utils/version"
 
 module UnihanUtils
-  require "unihan_utils/base"
-  require "unihan_utils/character"
-  require "unihan_utils/characters_variants"
-  require "unihan_utils/import"
-  require "unihan_utils/variant_source"
+  autoload :Base, "unihan_utils/base"
+  autoload :Character, "unihan_utils/character"
+  autoload :CharactersVariants, "unihan_utils/characters_variants"
+  autoload :Import, "unihan_utils/import"
+  autoload :VariantSource, "unihan_utils/variant_source"
 end
 
 UnihanUtils::Base.init

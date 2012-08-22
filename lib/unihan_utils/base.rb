@@ -59,6 +59,7 @@ module UnihanUtils
     end
 
     def self.codepoint_from_uplus(uplus)
+      return uplus if uplus.is_a?(Fixnum)
       uplus.sub(/^U\+/, "").to_i(16)
     end
   end
