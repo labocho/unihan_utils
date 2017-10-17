@@ -8,11 +8,10 @@ module UnihanUtils
     # define scope 'semantic_variants' etc..
     CharactersVariants::KINDS.each{|k|
       scope_name = k[1..-1].underscore.pluralize
-      has_many "characters_#{scope_name}", class_name: "UnihanUtils::CharactersVariants", foreign_key: :codepoint, conditions: {kind: k}
-      has_many scope_name, class_name: "UnihanUtils::Character", through: "characters_#{scope_name}", source: :variant
+      has_many "characters_#{scope_name}".to_sym, -> { where(kind: k) }, class_name: "UnihanUtils::CharactersVariants", foreign_key: :codepoint
+      has_many scope_name.to_sym, class_name: "UnihanUtils::Character", through: "characters_#{scope_name}", source: :variant
     }
 
-    attr_accessible :codepoint
     attr_readonly :codepoint
 
     def self.build_from_codepoint(codepoint)

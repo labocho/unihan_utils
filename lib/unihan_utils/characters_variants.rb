@@ -16,7 +16,7 @@ module UnihanUtils
     # define scope 'semantic_variants' etc..
     KINDS.each{|k|
       scope_name = k[1..-1].underscore.sub(/_variant$/, "")
-      scope scope_name, where(kind: k)
+      scope scope_name, -> { where(kind: k) }
     }
 
     def inspect
